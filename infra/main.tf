@@ -18,7 +18,7 @@ resource "aws_instance" "playwright_instance" {
 
     mkdir /app
     cd /app
-    git clone https://github.com/czarekemce/ps5_price_comparison-playwright.git .
+    git clone https://github.com/czarekemce/ps5_price_comparison-playwright-AWS.git .
     chmod +x scripts/run-tests.sh
 
     sudo yum install -y cronie
