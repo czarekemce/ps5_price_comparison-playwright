@@ -13,8 +13,8 @@ resource "aws_instance" "playwright_instance" {
     curl -fsSL https://rpm.nodesource.com/setup_18.x | bash -
     sudo yum install -y nodejs git
     npm cache clean --force
-    npm install playwright
-    npm install playwright aws-sdk
+    npm i -D @playwright/test
+    npx playwright install
 
     mkdir /app
     cd /app
@@ -80,6 +80,7 @@ resource "aws_iam_policy" "s3_access_policy" {
             "s3:GetObject"
           ],
           "Resource": [
+            "arn:aws:s3:::${var.bucketname}",
             "arn:aws:s3:::${var.bucketname}/*"
 
           ]
@@ -96,6 +97,5 @@ resource "aws_iam_role_policy_attachment" "ec2_role_attachment" {
 
 resource "aws_iam_instance_profile" "ec2_instance_profile" {
   name = "EC2InstanceProfile"
-
   role = aws_iam_role.ec2_role.name
 }
