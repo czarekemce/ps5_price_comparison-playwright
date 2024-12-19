@@ -13,9 +13,8 @@ resource "aws_instance" "playwright_instance" {
     curl -fsSL https://rpm.nodesource.com/setup_18.x | bash -
     sudo yum install -y nodejs git
     npm cache clean --force
-    npm i -D @playwright/test -y
+    npm install @playwright/test 
     npx playwright install
-    npx playwright install-deps
 
     mkdir /app
     cd /app
