@@ -34,12 +34,8 @@ resource "aws_instance" "playwright_instance" {
 }
 
 # S3 Bucket
-variable "BUCKET_NAME" {
-  description = "S3 bucket name"
-}
-
 resource "aws_s3_bucket" "price_file" {
-  bucket = "var.BUCKET_NAME"
+  bucket = var.bucketname
 
   tags = {
     Name        = "TestResultsBucket"
@@ -82,7 +78,8 @@ resource "aws_iam_policy" "s3_access_policy" {
             "s3:GetObject"
           ],
           "Resource": [
-            "arn:aws:s3:::var.BUCKET_NAME/*"
+            "arn:aws:s3:::${var.bucketname}/*"
+
           ]
         }
       ]
