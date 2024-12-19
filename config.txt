@@ -1,1 +1,1 @@
-BUCKET_NAME=twoja-nazwa-bucketa
+bucketname=testowy-bucket-number-4567
