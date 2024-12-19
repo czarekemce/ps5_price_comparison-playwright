@@ -4,4 +4,4 @@
 source ../config.txt
 
 # Tworzymy plik .tfvars, w którym zapisujemy zmienną
-echo "BUCKET_NAME = \"$bucketname\"" > ../infra/config.tfvars
+echo "bucketname = \"$bucketname\"" > ../infra/config.tfvars

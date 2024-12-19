@@ -3,7 +3,7 @@
 npx playwright test
 
 source ../config.txt
-echo $BUCKET_NAME
+echo $bucketname
 
 if [ $? -eq 0 ]; then
     echo "Tests passed. Uploading prices.txt to S3..."
