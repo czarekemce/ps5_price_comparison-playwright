@@ -11,7 +11,7 @@ resource "aws_instance" "playwright_instance" {
     #!/bin/bash
     yum update -y
     curl -fsSL https://rpm.nodesource.com/setup_18.x | bash -
-    sudo yum install -y nodejs
+    sudo yum install -y nodejs git
     npm cache clean --force
     npm install @playwright/test
     npm install playwright aws-sdk
