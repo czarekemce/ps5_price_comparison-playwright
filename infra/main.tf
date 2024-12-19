@@ -13,13 +13,14 @@ resource "aws_instance" "playwright_instance" {
     curl -fsSL https://rpm.nodesource.com/setup_18.x | bash -
     sudo yum install -y nodejs git
     npm cache clean --force
-    npm install @playwright/test
+    npm install playwright
     npm install playwright aws-sdk
 
     mkdir /app
     cd /app
     git clone https://github.com/czarekemce/ps5_price_comparison-playwright-AWS.git .
-    chmod +x scripts/run-tests.sh
+    sudo chmod -R 777 /app/scripts
+    sudo chmod +x scripts/run-tests.sh
 
     sudo yum install -y cronie
     sudo systemctl enable crond
