@@ -4,14 +4,14 @@ provider "aws" {
 
 # EC2 Instance
 resource "aws_instance" "playwright_instance" {
-  ami           = "ami-0e54671bdf3c8ed8d"
+  ami           = "ami-0a628e1e89aaedf80"
   instance_type = "t2.micro"
 
   user_data = <<-EOF
     #!/bin/bash
-    yum update -y
-    curl -fsSL https://rpm.nodesource.com/setup_18.x | bash -
-    sudo yum install -y nodejs git
+    apt update -y
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+    sudo apt install -y nodejs git
     npm cache clean --force
 
     mkdir /app
@@ -19,16 +19,16 @@ resource "aws_instance" "playwright_instance" {
     git clone https://github.com/czarekemce/ps5_price_comparison-playwright-AWS.git .
     npm install @playwright/test 
     npx playwright install
-    sudo chmod -R 777 /app/scripts
-    sudo chmod +x scripts/run-tests.sh
+    npx playwright install-deps
 
-    sudo yum install -y cronie
-    sudo systemctl enable crond
-    sudo systemctl start crond
+    sudo apt install -y cron
+    sudo systemctl enable cron
+    sudo systemctl start cron
 
     /app/scripts/run-tests.sh
     (crontab -l 2>/dev/null; echo "0 * * * * /app/scripts/run-tests.sh") | crontab -
   EOF
+
 
   tags = {
     Name = "PlaywrightInstance"
