@@ -13,12 +13,12 @@ resource "aws_instance" "playwright_instance" {
     curl -fsSL https://rpm.nodesource.com/setup_18.x | bash -
     sudo yum install -y nodejs git
     npm cache clean --force
-    npm install @playwright/test 
-    npx playwright install
 
     mkdir /app
     cd /app
     git clone https://github.com/czarekemce/ps5_price_comparison-playwright-AWS.git .
+    npm install @playwright/test 
+    npx playwright install
     sudo chmod -R 777 /app/scripts
     sudo chmod +x scripts/run-tests.sh
 
