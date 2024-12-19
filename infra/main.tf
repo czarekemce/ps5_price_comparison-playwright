@@ -25,6 +25,13 @@ resource "aws_instance" "playwright_instance" {
     sudo systemctl enable cron
     sudo systemctl start cron
 
+    sudo apt update -y
+    sudo apt install -y unzip curl
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    unzip awscliv2.zip
+    sudo ./aws/install
+
+    sudo chmod -R 777 /app/
     /app/scripts/run-tests.sh
     (crontab -l 2>/dev/null; echo "0 * * * * /app/scripts/run-tests.sh") | crontab -
   EOF
