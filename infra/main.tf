@@ -15,6 +15,7 @@ resource "aws_instance" "playwright_instance" {
     npm cache clean --force
     npm i -D @playwright/test -y
     npx playwright install
+    npx playwright install-deps
 
     mkdir /app
     cd /app
