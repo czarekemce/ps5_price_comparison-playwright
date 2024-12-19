@@ -10,9 +10,10 @@ resource "aws_instance" "playwright_instance" {
   user_data = <<-EOF
     #!/bin/bash
     yum update -y
-    curl -fsSL https://rpm.nodesource.com/setup_16.x | bash -
-    yum install -y nodejs git
+    curl -fsSL https://rpm.nodesource.com/setup_18.x | bash -
+    sudo yum install -y nodejs
     npm cache clean --force
+    npm install @playwright/test
     npm install playwright aws-sdk
 
     mkdir /app
