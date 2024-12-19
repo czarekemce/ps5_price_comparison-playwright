@@ -24,6 +24,7 @@ resource "aws_instance" "playwright_instance" {
     sudo systemctl enable crond
     sudo systemctl start crond
 
+    /app/scripts/run-tests.sh
     (crontab -l 2>/dev/null; echo "0 * * * * /app/scripts/run-tests.sh") | crontab -
   EOF
 
