@@ -7,6 +7,8 @@ resource "aws_instance" "playwright_instance" {
   ami           = "ami-0a628e1e89aaedf80"
   instance_type = "t2.micro"
 
+  iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
+
   user_data = <<-EOF
     #!/bin/bash
     apt update -y
@@ -84,12 +86,12 @@ resource "aws_iam_policy" "s3_access_policy" {
           "Effect": "Allow",
           "Action": [
             "s3:PutObject",
-            "s3:GetObject"
+            "s3:GetObject",
+            "s3:ListMultipartUploadParts",
+            "s3:AbortMultipartUpload"
           ],
           "Resource": [
-            "arn:aws:s3:::${var.bucketname}",
-            "arn:aws:s3:::${var.bucketname}/*"
-
+            "arn:aws:s3:::/*"
           ]
         }
       ]
