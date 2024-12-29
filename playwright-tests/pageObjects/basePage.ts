@@ -34,10 +34,10 @@ export class BasePage {
     return priceLocator.textContent()
   }
 
-  async appendPriceToFile(method) {
+  async appendPriceToFile(method, website) {
     const fileHandle = await fs.open('prices.txt', 'a');
     try {
-        await fileHandle.write(method + '\n');
+        await fileHandle.write(method + website + '\n');
         const content = await fs.readFile('prices.txt', 'utf-8');
         console.log(content);
         

@@ -2,7 +2,7 @@ import { test } from '@playwright/test';
 import { BasePage } from '../pageObjects/basePage';
 import { MediaExpert } from '../pageObjects/mediaPage';
 
-test('Euro RTV AGD - get PS5 lowest price', async ({ page }) => {
+test('Media expert - get PS5 lowest price', async ({ page }) => {
   const basePage = new BasePage(page);
   const media = new MediaExpert(page);
 
@@ -11,6 +11,6 @@ test('Euro RTV AGD - get PS5 lowest price', async ({ page }) => {
   await basePage.sortByPrice(media.sortDropdownButton, media.lowestPriceButton);
   await media.removeAdvert();
   const mediaPrice = await basePage.getLowestPrice(media.itemPrice);
-  await basePage.appendPriceToFile(mediaPrice);
+  await basePage.appendPriceToFile(mediaPrice, 'media expert');
 });
 
