@@ -20,7 +20,7 @@ def lambda_handler(event, context):
         try:
             for line in file_content.splitlines():
                 replaced = re.sub(r'\s+', '', line.strip())
-                splitted = replaced[4:]
+                splitted = replaced.replace('zł', '')[4:]
                 value = int(replaced[:4])
                 if value <= 2000:
                     alert_triggered = True
