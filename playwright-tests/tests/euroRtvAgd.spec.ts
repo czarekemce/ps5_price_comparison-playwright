@@ -10,5 +10,5 @@ test('Euro rtv agd - get PS5 lowest price', async ({ page }) => {
   await basePage.acceptCookiesIfVisible(euro.cookiesBanner, euro.acceptCookiesButton);
   await basePage.sortByPrice(euro.sortDropdownButton, euro.lowestPriceButton);
   const euroPrice = await basePage.getLowestPrice(euro.itemPrice);
-  await basePage.appendPriceToFile(euroPrice);
+  await basePage.appendPriceToFile(euroPrice, 'euro rtv agd');
 });
