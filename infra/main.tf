@@ -202,5 +202,5 @@ resource "aws_sns_topic" "price_alerts" {
 resource "aws_sns_topic_subscription" "email_subscription" {
   topic_arn = aws_sns_topic.price_alerts.arn
   protocol  = "email"
-  endpoint  = var.email 
+  endpoint  = var.email
 }
