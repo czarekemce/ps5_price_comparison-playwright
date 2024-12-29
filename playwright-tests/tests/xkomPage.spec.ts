@@ -10,5 +10,5 @@ test('X-Kom - get PS5 lowest price', async ({ page }) => {
   await basePage.acceptCookiesIfVisible(xkom.cookiesBanner, xkom.acceptCookiesButton);
   await basePage.sortByPrice(xkom.sortDropdownButton, xkom.lowestPriceButton);
   const xkomPrice = await basePage.getLowestPrice(xkom.itemPrice);
-  await basePage.appendPriceToFile(xkomPrice, 'x-kom');
+  await basePage.appendPriceToFile(xkomPrice);
 });

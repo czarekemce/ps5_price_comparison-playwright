@@ -11,6 +11,6 @@ test('Media expert - get PS5 lowest price', async ({ page }) => {
   await basePage.sortByPrice(media.sortDropdownButton, media.lowestPriceButton);
   await media.removeAdvert();
   const mediaPrice = await basePage.getLowestPrice(media.itemPrice);
-  await basePage.appendPriceToFile(mediaPrice, 'media expert');
+  await basePage.appendPriceToFile(mediaPrice);
 });
 
