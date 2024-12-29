@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /app
+cd /app/playwright-tests/
 npx playwright test
 
 source /app/config.txt
