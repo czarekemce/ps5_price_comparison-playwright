@@ -1,4 +1,5 @@
-variable "bucketname" {
+variable "email" {
   type        = string
-  description = "Name of the S3 bucket"
+  description = "Email address"
 }
+

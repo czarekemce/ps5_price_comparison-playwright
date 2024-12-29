@@ -1,1 +1,1 @@
-bucketname=testowy-bucket-number-xx8
+email=cezary_pocztax@wp.pl

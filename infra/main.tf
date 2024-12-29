@@ -48,7 +48,7 @@ resource "aws_instance" "playwright_instance" {
 
 # S3 Bucket
 resource "aws_s3_bucket" "price_file" {
-  bucket = var.bucketname
+  bucket = "testowy-bucket-number-xx8"
 
   tags = {
     Name        = "TestResultsBucket"
@@ -94,8 +94,8 @@ resource "aws_iam_policy" "s3_access_policy" {
             "s3:DeleteObject"
           ],
           "Resource": [
-            "arn:aws:s3:::${var.bucketname}/*",
-            "arn:aws:s3:::${var.bucketname}"
+            "arn:aws:s3:::testowy-bucket-number-xx8/*",
+            "arn:aws:s3:::testowy-bucket-number-xx8"
 
           ]
         }
@@ -202,5 +202,5 @@ resource "aws_sns_topic" "price_alerts" {
 resource "aws_sns_topic_subscription" "email_subscription" {
   topic_arn = aws_sns_topic.price_alerts.arn
   protocol  = "email"
-  endpoint  = "cezary_pocztax@wp.pl" 
+  endpoint  = var.email 
 }
