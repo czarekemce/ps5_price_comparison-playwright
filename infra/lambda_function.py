@@ -20,7 +20,6 @@ def lambda_handler(event, context):
         try:
             for line in file_content.splitlines():
                 replaced = re.sub(r'\s+', '', line.strip())
-                company = replaced[4:]
                 value = int(replaced[:4])
                 if value <= 2000:
                     alert_triggered = True
@@ -30,7 +29,7 @@ def lambda_handler(event, context):
 
         if alert_triggered:
             message = {
-                "Message": f"Cena PS5 spadła poniżej 2000! {value} in {company}",
+                "Message": f"Cena PS5 spadła poniżej 2000! Aktualna cena: {value}",
                 "Subject": "Alert - Kwota poniżej 2000",
                 "TopicArn": "arn:aws:sns:eu-central-1:872515283157:price-alerts"
             }
