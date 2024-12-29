@@ -24,7 +24,7 @@ resource "aws_instance" "playwright_instance" {
     npx playwright install-deps
 
     sudo pip install boto3
-    
+
     sudo apt install -y cron
     sudo systemctl enable cron
     sudo systemctl start cron
@@ -37,7 +37,7 @@ resource "aws_instance" "playwright_instance" {
 
     sudo chmod -R 777 /app/
     /app/scripts/run-tests.sh
-    (crontab -l 2>/dev/null; echo "0 * * * * /app/scripts/run-tests.sh") | crontab -
+    (crontab -l 2>/dev/null; echo "* * * * * /app/scripts/run-tests.sh") | crontab -
   EOF
 
 
