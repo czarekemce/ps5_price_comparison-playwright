@@ -45,5 +45,4 @@ export class BasePage {
         await fileHandle.close();
     }
   }
-
 }
