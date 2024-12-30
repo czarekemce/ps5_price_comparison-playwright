@@ -1,1 +1,1 @@
-email=cezary_pocztax@wp.pl
+email=mail@mail.com

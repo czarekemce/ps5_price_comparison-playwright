@@ -22,6 +22,7 @@ resource "aws_instance" "playwright_instance" {
     npm install @playwright/test 
     npx playwright install
     npx playwright install-deps
+    echo "email=${var.email}" > /app/config.txt
 
     sudo pip install boto3
 
@@ -37,7 +38,7 @@ resource "aws_instance" "playwright_instance" {
 
     sudo chmod -R 777 /app/
     /app/scripts/run-tests.sh
-    (crontab -l 2>/dev/null; echo "* * * * * /app/scripts/run-tests.sh") | crontab -
+    (crontab -l 2>/dev/null; echo "0 * * * * /app/scripts/run-tests.sh") | crontab -
   EOF
 
 
