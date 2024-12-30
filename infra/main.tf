@@ -18,7 +18,7 @@ resource "aws_instance" "playwright_instance" {
 
     mkdir /app
     cd /app
-    git clone https://github.com/czarekemce/ps5_price_comparison-playwright-AWS.git .
+    git clone https://github.com/czarekemce/ps5_price_comparison-playwright-terraform-python-AWS.git .
     npm install @playwright/test 
     npx playwright install
     npx playwright install-deps
