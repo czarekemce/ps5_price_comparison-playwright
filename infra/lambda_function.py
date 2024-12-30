@@ -5,18 +5,18 @@ s3 = boto3.client('s3')
 sns = boto3.client('sns')
 
 def lambda_handler(event, context):
-    # Odczytaj szczegóły zdarzenia
+    # Odczytaj szczegóły
     bucket_name = event['Records'][0]['s3']['bucket']['name']
     file_name = event['Records'][0]['s3']['object']['key']
     
     try:
-        # Pobierz plik z S3
+        # Pobierz plik z bucketa
         response = s3.get_object(Bucket=bucket_name, Key=file_name)
         file_content = response['Body'].read().decode('utf-8')
         
-        # Przetwórz zawartość pliku
         alert_triggered = False
-        
+
+        # Zostaw same int'y + warunek na kwotę 2000
         try:
             for line in file_content.splitlines():
                 replaced = re.sub(r'\s+', '', line.strip())
