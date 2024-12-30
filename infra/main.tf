@@ -2,7 +2,7 @@ provider "aws" {
   region = "eu-central-1" 
 }
 
-# EC2 Instance
+# EC2
 resource "aws_instance" "playwright_instance" {
   ami           = "ami-0a628e1e89aaedf80"
   instance_type = "t2.micro"
@@ -47,7 +47,7 @@ resource "aws_instance" "playwright_instance" {
   }
 }
 
-# S3 Bucket
+# Bucket
 resource "aws_s3_bucket" "price_file" {
   bucket = "testowy-bucket-number-xx8"
 
@@ -57,7 +57,7 @@ resource "aws_s3_bucket" "price_file" {
   }
 }
 
-# IAM Role for S3 Access
+# IAM Role dla S3
 resource "aws_iam_role" "ec2_role" {
   name = "EC2S3AccessRole"
 
@@ -77,6 +77,7 @@ resource "aws_iam_role" "ec2_role" {
   EOF
 }
 
+# IAM Policy dla S3
 resource "aws_iam_policy" "s3_access_policy" {
   name        = "S3AccessPolicy"
   description = "Policy to allow S3 access for EC2"
@@ -115,7 +116,7 @@ resource "aws_iam_instance_profile" "ec2_instance_profile" {
   role = aws_iam_role.ec2_role.name
 }
 
-# Rola IAM dla funkcji Lambda
+# IAM Role dla funkcji Lambda
 resource "aws_iam_role" "lambda_role" {
   name = "lambda_role"
 
@@ -134,7 +135,7 @@ resource "aws_iam_role" "lambda_role" {
   })
 }
 
-# Polityka IAM dla Lambda (dostęp do S3 i SNS)
+# IAM Policy dla Lambda (dostęp do S3 i SNS)
 resource "aws_iam_policy" "lambda_policy" {
   name        = "lambda-policy"
   description = "Policy for Lambda to access S3 and SNS"
@@ -194,12 +195,12 @@ resource "aws_lambda_permission" "allow_s3_trigger" {
   source_arn    = aws_s3_bucket.price_file.arn
 }
 
-# Zasób SNS - temat powiadomień
+# Zasób SNS
 resource "aws_sns_topic" "price_alerts" {
   name = "price-alerts"
 }
 
-# Subskrypcja SNS - powiadomienie email
+# Subskrypcja SNS
 resource "aws_sns_topic_subscription" "email_subscription" {
   topic_arn = aws_sns_topic.price_alerts.arn
   protocol  = "email"
